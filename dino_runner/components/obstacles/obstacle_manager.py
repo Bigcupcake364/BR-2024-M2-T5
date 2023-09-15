@@ -25,6 +25,8 @@ class ObstacleManager:
             if game.player.dino_rect.colliderect(obstacle.rect):
                 pygame.time.delay(500)
                 self.reset_obstacles(game)
+                if game.score > game.record:
+                    game.record = game.score
                 game.playing = False
                 game.last_score = game.score
                 game.score = 0

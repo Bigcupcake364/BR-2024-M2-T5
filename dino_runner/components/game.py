@@ -20,6 +20,7 @@ class Game:
         self.playing = False
         self.running = False
         self.score = 0
+        self.record = 0
         self.text_score = f"Score: {self.score}", True, (0, 255, 0)
         self.game_speed = 20
         self.death_count = 0
@@ -84,13 +85,13 @@ class Game:
 
     def stamp(self):
         font = pygame.font.Font(FONT_STYLE, 22)
-        text = font.render(self.text_screen[0], self.text_screen[1], self.text_screen[2])
+        text = font.render(self.text_screen[0], True, self.text_screen[2])
         text_rect = text.get_rect()
         text_rect.center = (self.text_position)
         self.screen.blit(text, text_rect)
 
     def draw_score(self):
-        self.text_screen = [f"Score: {self.score}", True, (0, 255, 0)]
+        self.text_screen = [f"Your HighScore: {self.record}\nScore: {self.score}", True, (0, 255, 0)]
         self.text_position = 1000, 50
         self.stamp()
 
@@ -111,15 +112,9 @@ class Game:
             self.stamp()
         else:
             self.screen.blit(ICON, (half_screen_width - 60, half_screen_heigth - 140))
-            self.text_screen = [f"""Your last score was {self.last_score}, so press any key if you want to restart""", True, (0, 0, 255)]
+            self.text_screen = [f"Your last score was {self.last_score}\nThis is your death count: 💀{self.death_count}\nSo press any key if you want to restart", True, (0, 0, 255)]
             self.text_position = center
             self.stamp()
-            ## Mostrar mensafem de "Press any key to restart"
-            ## Mostrar Death count
-
-            ##Resetar o score e game_speed quando reiniciar uma nova rodada do jogo
-            ##Criar um método para remover a repetição de codigo para o texto
 
         pygame.display.update()
-
         self.handle_events_on_menu()
