@@ -1,5 +1,5 @@
 from dino_runner.components.obstacles.obstacle import Obstacle
-from dino_runner.components.dinossaur import Dinosaur
+from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.utils.constants import BIRD
 
 dinosaur = Dinosaur()
