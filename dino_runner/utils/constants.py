@@ -115,6 +115,11 @@ HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
 FONT_FILE = os.path.join(IMG_DIR, 'Other/bebasNeue.ttf')
 
+PLAY_MUSIC = os.path.join(IMG_DIR, 'Other/castlevania.mp3')
+MAIN_MUSIC = os.path.join(IMG_DIR, 'Other/melancolic.mp3')
+DEATH_SOUND = os.path.join(IMG_DIR, 'Other/death_sound.mp3')
+MENU_MUSIC = os.path.join(IMG_DIR, 'Other/castlevania2.mp3')
+
 DEFAULT_TYPE = "default"
 SHIELD_TYPE = "shield"
 HAMMER_TYPE = "hammer"

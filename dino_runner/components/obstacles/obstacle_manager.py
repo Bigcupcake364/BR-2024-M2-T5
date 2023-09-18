@@ -1,9 +1,10 @@
 import pygame
 import random
+from pygame import mixer 
 
 from dino_runner.components.obstacles.cactus import Cactus
 from dino_runner.components.obstacles.bird import Bird
-from dino_runner.utils.constants import SHIELD_TYPE, HAMMER_TYPE, DEFAULT_TYPE, SPEED_TYPE, RUNNING_SHIELD_ACT, JUMPING_SHIELD_ACT, DUCKING_SHIELD_ACT, DINO_DAMAGE, CACTUS_DEATH, BIRD_DEATH
+from dino_runner.utils.constants import SHIELD_TYPE, HAMMER_TYPE, DEFAULT_TYPE, SPEED_TYPE, RUNNING_SHIELD_ACT, JUMPING_SHIELD_ACT, DUCKING_SHIELD_ACT, DINO_DAMAGE, CACTUS_DEATH, BIRD_DEATH, DEATH_SOUND, MENU_MUSIC
 
 X_POS = 80
 Y_POS = 310
@@ -32,7 +33,11 @@ class ObstacleManager:
             obstacle.update(game.game_speed, self.obstacles)
             if game.player.dino_rect.colliderect(obstacle.rect):
                 if not game.player.has_power_up and game.player.life == 0:
-                    pygame.time.delay(500)
+                    mixer.music.load(DEATH_SOUND)
+                    mixer.music.play()
+                    pygame.time.delay(2500)
+                    mixer.music.load(MENU_MUSIC)
+                    mixer.music.play()
                     game.player.type = DEFAULT_TYPE
                     game.player.power_up_time = 0
                     game.playing = False
@@ -41,7 +46,6 @@ class ObstacleManager:
                         game.death_message = CACTUS_DEATH[random.randint(0, 2)]
                     elif isinstance(obstacle, Bird):
                         game.death_message = BIRD_DEATH[random.randint(0, 2)]
-                    break
                 elif game.player.has_power_up and game.player.type == HAMMER_TYPE:
                     self.obstacles.pop()
                     game.player.type = DEFAULT_TYPE

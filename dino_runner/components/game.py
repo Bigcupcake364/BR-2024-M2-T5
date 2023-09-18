@@ -1,10 +1,15 @@
 import pygame
+from pygame import mixer 
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SPEED_TYPE
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SPEED_TYPE, PLAY_MUSIC, MAIN_MUSIC
 from dino_runner.utils.text_utils import draw_message_component
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.power_ups.power_up_manager import PowerUpManager
+
+mixer.init()  
+mixer.music.set_volume(5) 
+ 
 
 
 class Game:
@@ -31,6 +36,8 @@ class Game:
 
     def execute(self):
         self.running = True
+        mixer.music.load(MAIN_MUSIC)
+        mixer.music.play()
         while self.running:
             if not self.playing:
                 self.show_menu()
@@ -50,7 +57,7 @@ class Game:
             self.events()
             self.update()
             self.draw()
-     
+
     def events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -142,6 +149,8 @@ class Game:
                 self.playing = False
                 self.running = False
             elif event.type == pygame.KEYDOWN:
+                mixer.music.load(PLAY_MUSIC) 
+                mixer.music.play()
                 self.run()
 
     def show_menu(self):
