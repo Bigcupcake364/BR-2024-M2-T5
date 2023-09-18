@@ -1,6 +1,7 @@
 import pygame
 import os
 
+pygame.mixer.init()
 # Global Constants
 TITLE = "Chrome Dino Runner"
 SCREEN_HEIGHT = 600

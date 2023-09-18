@@ -9,7 +9,6 @@ from dino_runner.components.power_ups.power_up_manager import PowerUpManager
 
 mixer.init()  
 mixer.music.set_volume(5) 
- 
 
 
 class Game:
