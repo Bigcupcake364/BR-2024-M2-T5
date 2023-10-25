@@ -8,7 +8,7 @@ from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.power_ups.power_up_manager import PowerUpManager
 
 mixer.init()  
-mixer.music.set_volume(5) 
+mixer.music.set_volume(0.3) 
 
 
 class Game:
@@ -71,6 +71,7 @@ class Game:
 
         if self.player.type == SPEED_TYPE:
             self.game_speed = 100
+            self.score += 14
         else:
             self.game_speed = self.game_speed_backup
 
